@@ -9,15 +9,15 @@ export default defineConfig({
       "@common": resolve(__dirname, "src/common"),
       "@assets": resolve(__dirname, "src/assets"),
       "@features": resolve(__dirname, "src/features"),
+      "@lib": resolve(__dirname, "src/lib"),
       "@pages": resolve(__dirname, "src/pages"),
       "@routes": resolve(__dirname, "src/routes"),
-      "@services": resolve(__dirname, "src/services"),
       "@ui": resolve(__dirname, "src/ui"),
     },
   },
   plugins: [react()],
   server: {
     cors: true,
-    port: Number(process.env.REACT_APP_PORT),
+    port: 3000,
   },
 });
