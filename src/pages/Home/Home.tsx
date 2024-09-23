@@ -11,7 +11,7 @@ export const Home = (): ReactNode => {
       <SimpleCard
         name="Bulbasaur"
         picture={{
-          src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
           description: "",
         }}
         types={[

@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
   resolve: {
@@ -15,7 +16,19 @@ export default defineConfig({
       "@ui": resolve(__dirname, "src/ui"),
     },
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        exportType: "default",
+        ref: true,
+        svgo: false,
+        titleProp: true,
+        typescript: true,
+      },
+      include: "**/*.svg",
+    }),
+  ],
   server: {
     cors: true,
     port: 3000,
