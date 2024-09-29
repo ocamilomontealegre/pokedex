@@ -6,9 +6,6 @@ export const useDynamicSvg = (iconName: string): IUseDynamicSvg => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown>();
 
-  const path = import(`../../assets/icons/pokeball.svg?react`);
-  path.then((module) => console.log(module.default));
-
   useEffect(() => {
     setLoading(true);
 
@@ -16,7 +13,7 @@ export const useDynamicSvg = (iconName: string): IUseDynamicSvg => {
       try {
         importedIconRef.current = (
           await import(`../../assets/icons/${iconName}.svg?react`)
-        ).ReactComponent;
+        ).default;
       } catch (error) {
         setError(error);
         console.error(error);

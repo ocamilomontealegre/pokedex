@@ -1,23 +1,43 @@
 import { TypeLabel } from "../TypeLabel/TypeLabel";
 import { PokemonImage } from "../PokemonImage/PokemonImage";
-import type { ISimpleCardProps } from "./models/interfaces/simple-card.interface";
 import { SvgIcon } from "../SvgIcon/SvgIcon";
+import { getTypeColor } from "@features/pokemon/utils";
+import { TypeColorWeight } from "@features/pokemon/enums";
+import type { ISimpleCardProps } from "./models/interfaces/simple-card.interface";
+import type { PokemonType } from "@features/pokemon/types/pokemon-type.type";
 
 export const SimpleCard = ({ name, picture, types }: ISimpleCardProps) => {
-  const bgColor = types.map((type) => type.type.name)[0];
+  const typeName = types.map((type) => type.type.name)[0];
+  const svgBgColor = getTypeColor(typeName as PokemonType, TypeColorWeight.LIGHT);
 
   return (
-    <div className={`flex pt-8 px-4 pb-4 rounded-lg bg-${bgColor}`}>
-      <div className="w-full">
-        <h3 className="text-3xl">{name}</h3>
-        <div className="flex flex-col gap-1 w-2/5">
+    <div
+      className={`flex pt-8 px-4 pb-4 max-w-md max-h-60 rounded-3xl bg-${typeName} overflow-hidden`}
+    >
+      <div className="flex flex-col gap-4 w-full">
+        <h3 className="text-4xl">{name}</h3>
+        <div className="flex flex-col gap-2 w-2/5">
           {types.map((type) => (
             <TypeLabel key={type.slot} text={type.type.name} />
           ))}
         </div>
-        <SvgIcon iconName="pokeball" svgProps={{ width: 500, height: 500, fill: "#61dafb" }} />
       </div>
-      <PokemonImage className="size-2/5" src={picture.src} description={picture.description} />
+      <div className="relative top-8 left-7">
+        <SvgIcon
+          iconName="pokeball"
+          svgProps={{
+            className: "relative",
+            width: 220,
+            height: 220,
+            fill: `${svgBgColor}`,
+          }}
+        />
+        <PokemonImage
+          className="size-3/4 z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          src={picture.src}
+          description={picture.description}
+        />
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ export const TypeLabel = ({ text }: ITypeLabelProps): ReactNode => {
 
   return (
     <div
-      className={`w-fit py-1 px-2 rounded-2xl text-sm text-center capitalize bg-${bgColor} bg-opacity-85`}
+      className={`w-fit py-2 px-6 rounded-2xl text-sm text-center capitalize bg-${bgColor} bg-opacity-85`}
     >
       {text}
     </div>
