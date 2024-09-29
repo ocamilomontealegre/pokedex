@@ -16,19 +16,7 @@ export default defineConfig({
       "@ui": resolve(__dirname, "src/ui"),
     },
   },
-  plugins: [
-    react(),
-    svgr({
-      svgrOptions: {
-        exportType: "default",
-        ref: true,
-        svgo: false,
-        titleProp: true,
-        typescript: true,
-      },
-      include: "**/*.svg",
-    }),
-  ],
+  plugins: [react(), svgr()],
   server: {
     cors: true,
     port: 3000,
