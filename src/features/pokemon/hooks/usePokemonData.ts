@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
-import type { IUsePokemonData } from "../interfaces/use-pokemon-data.interface";
-import type { GenericType } from "@common/types";
+import { useQueries, useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getPokemon } from "../services";
+import type { IUsePokemonData } from "../interfaces/use-pokemon-data.interface";
+import { IPokemonDetail, IPokemonItem } from "../interfaces";
+import { getPokemonDetails } from "../services/get-pokemon-details.service";
 
-export const usePokemonData = (id: string | number = ""): IUsePokemonData => {
-  const [pokemonData, setPokemonData] = useState<GenericType | null>(null);
-
-  useEffect(() => {
-    const fetchPokemonData = async () => {
-      const response = await getPokemon(id);
-      setPokemonData(response);
-    };
-
-    fetchPokemonData();
-  }, []);
+export const usePokemonData = (): IUsePokemonData => {
+  const {
+    data: pokemonData,
+    error,
+    isLoading,
+    isError,
+  }: UseQueryResult<IPokemonItem[]> = useQuery({ queryKey: ["pokemonList"], queryFn: getPokemon });
 
   return {
     pokemonData,
+    error,
+    isLoading,
+    isError,
   };
 };

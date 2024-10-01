@@ -1,8 +1,8 @@
 import { api } from "../adapters/api.adapter";
 import { PokeApiResourcesEnum } from "../enums/poke-api-resources.enum";
-import type { GenericType } from "@common/types";
+import { IPokemonItem, IPokemonList } from "../interfaces";
 
-export const getPokemon = async (id: string | number = ""): Promise<GenericType> => {
-  const response = await api.get(`${PokeApiResourcesEnum.POKEMON}/${id}`);
-  return response.data;
+export const getPokemon = async (): Promise<IPokemonItem[]> => {
+  const response = await api.get<IPokemonList>(PokeApiResourcesEnum.POKEMON);
+  return response.data.results;
 };

@@ -1,11 +1,10 @@
 import { createHttpAdapter } from "@lib/axios/adapters/http.adapter";
 import { envConfig } from "@common/config/config";
-import type { Pokemon } from "@common/types";
 import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const { pokeApiUrl } = envConfig;
 
-export const api = createHttpAdapter<Pokemon>(pokeApiUrl);
+export const api = createHttpAdapter(pokeApiUrl);
 
 api.axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {

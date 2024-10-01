@@ -1,5 +1,8 @@
-import type { GenericType } from "@common/types";
+import type { IPokemonItem } from "./pokemon-item.interface";
 
 export interface IUsePokemonData {
-  readonly pokemonData: GenericType | null;
+  readonly pokemonData: IPokemonItem[] | undefined;
+  readonly error: unknown;
+  readonly isLoading: boolean;
+  readonly isError: boolean;
 }
