@@ -12,8 +12,18 @@ export const usePokemonData = (): IUsePokemonData => {
     isError,
   }: UseQueryResult<IPokemonItem[]> = useQuery({ queryKey: ["pokemonList"], queryFn: getPokemon });
 
+  const results: UseQueryResult<IPokemonDetail>[] = useQueries({
+    queries: (pokemonData ?? []).map((pokemon) => ({
+      queryKey: ["pokemonDetail", pokemon.name],
+      queryFn: () => getPokemonDetails(pokemon.name),
+    })),
+  });
+
+  const pokemonDetails = results.map((result) => result.data);
+
   return {
     pokemonData,
+    pokemonDetails,
     error,
     isLoading,
     isError,

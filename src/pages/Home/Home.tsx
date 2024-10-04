@@ -3,8 +3,7 @@ import { SimpleCard } from "@ui/components/SimpleCard/SimpleCard";
 import type { ReactNode } from "react";
 
 export const Home = (): ReactNode => {
-  const { pokemonData, isLoading, error } = usePokemonData();
-  console.log("ok", pokemonData);
+  const { pokemonDetails, isLoading, error } = usePokemonData();
 
   if (isLoading) return "Loading...";
 
@@ -12,20 +11,27 @@ export const Home = (): ReactNode => {
 
   return (
     <div>
-      {pokemonData?.map((pokemon) => (
-        <SimpleCard
-          key={pokemon.name}
-          name={pokemon.name}
-          picture={{
-            src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-            description: "",
-          }}
-          types={[
-            { slot: 1, type: { name: "grass", url: "" } },
-            { slot: 2, type: { name: "poison", url: "" } },
-          ]}
-        />
-      ))}
+      {pokemonDetails?.map((pokemon) => {
+        if (!pokemon) {
+          return null;
+        }
+
+        const { name, sprites, types } = pokemon!;
+
+        const ok = sprites.other["official-artwork"].front_default;
+
+        return (
+          <SimpleCard
+            key={name}
+            name={name}
+            picture={{
+              src: ok,
+              description: "",
+            }}
+            types={types}
+          />
+        );
+      })}
     </div>
   );
 };

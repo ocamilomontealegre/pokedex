@@ -1,6 +1,6 @@
-import { POKEMON_TYPE_COLORS } from "../constants";
 import { capitalizeText } from "@common/utils";
 import { TypeColorWeight } from "../enums";
+import { POKEMON_TYPE_COLORS } from "../constants";
 import type { PokemonType } from "../types/pokemon-type.type";
 
 export const getTypeColor = (pokemonType: PokemonType, weight: TypeColorWeight) => {
