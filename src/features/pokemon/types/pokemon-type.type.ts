@@ -23,6 +23,8 @@ export type PokemonType =
   | "lightGround"
   | "ice"
   | "lightIce"
+  | "normal"
+  | "lightNormal"
   | "poison"
   | "lightPoison"
   | "psychic"

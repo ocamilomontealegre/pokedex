@@ -25,6 +25,8 @@ export const POKEMON_TYPE_COLORS: Record<PokemonType, string> = {
   lightGround: "#BCA69C",
   ice: "#61A1AC",
   lightIce: "#A1D2D8",
+  normal: "#A8A878",
+  lightNormal: "#D5D59C",
   poison: "#6D3DA3",
   lightPoison: "#A68DC2",
   psychic: "#D14C45",

@@ -17,7 +17,7 @@ export const SimpleCard = ({ name, picture, types }: ISimpleCardProps) => {
       className={`flex pt-8 px-4 pb-4 max-w-md max-h-60 rounded-3xl bg-${typeName} overflow-hidden`}
     >
       <div className="flex flex-col gap-4 w-full">
-        <h3 className="text-4xl">{capitalizedName}</h3>
+        <h3 className="w-48 text-4xl">{capitalizedName}</h3>
         <div className="flex flex-col gap-2 w-2/5">
           {types.map((type) => (
             <TypeLabel key={type.slot} text={type.type.name} />
